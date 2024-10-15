@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  //controllers
   final usrName = TextEditingController();
   final password = TextEditingController();
 
@@ -28,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 50),
-                  const Text("LOGIN", style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 35),),
+                  const Text("LOGIN", style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 35,fontWeight: FontWeight.bold),),
                   const SizedBox(height: 40),
                   Image.asset("assets/researchicon.png", height: 200.0,width: 200.0,),
 
