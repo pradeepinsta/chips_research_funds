@@ -1,5 +1,6 @@
 import 'package:chips_research_funds/Components/button.dart';
 import 'package:chips_research_funds/Components/textfield.dart';
+import 'package:chips_research_funds/profile.dart';
 import 'package:chips_research_funds/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   
                   Container(
                       margin:const  EdgeInsets.symmetric(horizontal: 30),
-                      child: Button(label: "LOGIN", press: () {})),
+                      child: Button(
+                          label: "LOGIN",
+                          press: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> const Profile()));
+                          })),
 
                   const SizedBox(height: 10),
                   Row(
