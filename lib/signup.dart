@@ -1,5 +1,7 @@
 import 'package:chips_research_funds/Components/button.dart';
 import 'package:chips_research_funds/Components/textfield.dart';
+import 'package:chips_research_funds/JSON/users.dart';
+import 'package:chips_research_funds/SQLite/database_helper.dart';
 import 'package:chips_research_funds/login.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,16 @@ class _SignupScreenState extends State<SignupScreen> {
   final email = TextEditingController();
   final password = TextEditingController();
   final confirmPassword = TextEditingController();
+  final db = DatabaseHelper();
+
+  signUp() async
+  {
+    var res = await db.createUser(Users(fullName: fullName.text, email: email.text, usrName: usrName.text, password: password.text));
+    if(res>0){
+      if(!mounted) return;
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +53,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(height: 15),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 35),
-                      child: Button(label: "SIGN UP", press: (){})
+                      child: Button(label: "SIGN UP", press: (){
+                        signUp();
+                      })
                   ),
 
                   Row(

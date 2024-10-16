@@ -2,11 +2,16 @@ import 'package:chips_research_funds/Components/button.dart';
 import 'package:chips_research_funds/auth.dart';
 import 'package:flutter/material.dart';
 
+import 'JSON/users.dart';
+
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  final Users? profile;
+
+  const Profile({super.key, this.profile});
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -24,29 +29,29 @@ class Profile extends StatelessWidget {
                 ),
               ),
 
-              const Text("Pradeep Kumar",style: TextStyle(fontSize: 28, color: Colors.black),),
-              // const Text("pradeepkumar@cmcvellore.ac.in",style: TextStyle(fontSize: 18, color: Colors.grey),),
+              Text(profile!.fullName??"",style:const TextStyle(fontSize: 28, color: Colors.black),),
+              const Text("pradeepkumar@cmcvellore.ac.in",style: TextStyle(fontSize: 18, color: Colors.grey),),
 
 
               const SizedBox(height: 75,),
-              const ListTile(
-                leading: Icon(Icons.person, size: 30,),
-                subtitle: Text("Full Name"),
-                title: Text("Pradeep Kumar"),
+               ListTile(
+                leading:const Icon(Icons.person, size: 30,),
+                subtitle:const Text("Full Name"),
+                title: Text(profile!.fullName??""),
               ),
 
               const SizedBox(height: 10,),
-              const ListTile(
-                leading: Icon(Icons.person, size: 30,),
-                subtitle: Text("Email"),
-                title: Text("pradeepkumar@cmcvellore.ac.in"),
+               ListTile(
+                leading:const Icon(Icons.person, size: 30,),
+                subtitle:const Text("Email"),
+                title: Text(profile!.email??""),
               ),
 
               const SizedBox(height: 10,),
-              const ListTile(
-                leading: Icon(Icons.person, size: 30,),
-                subtitle: Text("Username"),
-                title: Text("T6449"),
+               ListTile(
+                leading:const Icon(Icons.person, size: 30,),
+                subtitle:const Text("Username"),
+                title: Text(profile!.usrName),
               ),
 
               const SizedBox(height: 75,),

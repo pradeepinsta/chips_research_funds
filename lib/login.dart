@@ -1,5 +1,7 @@
 import 'package:chips_research_funds/Components/button.dart';
 import 'package:chips_research_funds/Components/textfield.dart';
+import 'package:chips_research_funds/JSON/users.dart';
+import 'package:chips_research_funds/SQLite/database_helper.dart';
 import 'package:chips_research_funds/profile.dart';
 import 'package:chips_research_funds/signup.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isChecked = false;
   bool isLoginTrue = false;
+  
+  final db = DatabaseHelper();
+
+  //Login Method
+
+  login()async{
+    Users? usrDetails = await db.getUser(usrName.text);
+    var res = await db.authenticate(Users(usrName: usrName.text, password: password.text, fullName: ''));
+    if(res == true)
+      {
+        if(!mounted)return;
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> Profile(profile: usrDetails,)));
+      } else {
+      setState(() {
+        isLoginTrue = true;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -49,13 +69,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     }),
                   ),
-                  
+
+                  //Login Button
                   Container(
                       margin:const  EdgeInsets.symmetric(horizontal: 30),
                       child: Button(
                           label: "LOGIN",
                           press: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> const Profile()));
+                            login();
+                            // Navigator.push(context, MaterialPageRoute(builder: (context)=> const Profile()));
                           })),
 
                   const SizedBox(height: 10),
