@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   login()async{
     Users? usrDetails = await db.getUser(usrName.text);
-    var res = await db.authenticate(Users(usrName: usrName.text, password: password.text, fullName: ''));
+    var res = await db.authenticate(Users(usrName: usrName.text, password: password.text));
     if(res == true)
       {
         if(!mounted)return;

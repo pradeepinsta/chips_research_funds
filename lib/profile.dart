@@ -51,7 +51,7 @@ class Profile extends StatelessWidget {
                ListTile(
                 leading:const Icon(Icons.person, size: 30,),
                 subtitle:const Text("Username"),
-                title: Text(profile!.usrName),
+                title: Text(profile!.usrName??""),
               ),
 
               const SizedBox(height: 75,),
