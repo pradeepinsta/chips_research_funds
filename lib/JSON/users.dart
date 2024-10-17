@@ -12,8 +12,8 @@ class Users {
   final int? usrId;
   final String? fullName;
   final String? email;
-  final String usrName;
-  final String password;
+  final String? usrName;
+  final String? password;
 
   Users({
     this.usrId,
