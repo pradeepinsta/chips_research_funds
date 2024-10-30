@@ -1,6 +1,9 @@
+import 'package:bloc/bloc.dart';
+import 'package:chips_research_funds/Bloc/auth_bloc.dart';
 import 'package:chips_research_funds/Components/button.dart';
 import 'package:chips_research_funds/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'JSON/users.dart';
 
@@ -29,30 +32,39 @@ class Profile extends StatelessWidget {
                 ),
               ),
 
-              Text(profile!.fullName??"",style:const TextStyle(fontSize: 28, color: Colors.black),),
+
+              BlocBuilder <AuthBloc,AuthState> (
+                builder: (context, state) {
+                  if (state is Authenticated) {
+                    return Text(state.users.usrName.toString(),style:const TextStyle(fontSize: 28, color: Colors.black),);
+                }
+                  return Container();
+                }
+              ),
+
               const Text("pradeepkumar@cmcvellore.ac.in",style: TextStyle(fontSize: 18, color: Colors.grey),),
 
 
-              const SizedBox(height: 75,),
-               ListTile(
-                leading:const Icon(Icons.person, size: 30,),
-                subtitle:const Text("Full Name"),
-                title: Text(profile!.fullName??""),
-              ),
-
-              const SizedBox(height: 10,),
-               ListTile(
-                leading:const Icon(Icons.person, size: 30,),
-                subtitle:const Text("Email"),
-                title: Text(profile!.email??""),
-              ),
-
-              const SizedBox(height: 10,),
-               ListTile(
-                leading:const Icon(Icons.person, size: 30,),
-                subtitle:const Text("Username"),
-                title: Text(profile!.usrName??""),
-              ),
+              // const SizedBox(height: 75,),
+              //  ListTile(
+              //   leading:const Icon(Icons.person, size: 30,),
+              //   subtitle:const Text("Full Name"),
+              //   // title: Text(profile!.fullName??""),
+              // ),
+              //
+              // const SizedBox(height: 10,),
+              //  ListTile(
+              //   leading:const Icon(Icons.person, size: 30,),
+              //   subtitle:const Text("Email"),
+              //   title: Text(profile!.email??""),
+              // ),
+              //
+              // const SizedBox(height: 10,),
+              //  ListTile(
+              //   leading:const Icon(Icons.person, size: 30,),
+              //   subtitle:const Text("Username"),
+              //   title: Text(profile!.usrName??""),
+              // ),
 
               const SizedBox(height: 75,),
               Button(label: "LOGOUT", press: (){
